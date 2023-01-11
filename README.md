@@ -86,7 +86,7 @@ This repository features an EFI folder with two distinct `config.plist` files. O
 ## Turning off BD PROCHOT
 On this device, BD PROCHOT will activate at temperatures as low as 60°C ~ 70°C. When it kicks in, the CPU will throttle down to 0.4Ghz, making the device more or less unusable. That's why BD PROCHOT needs to be disabled in order to increase the performance of the machine.
 
-You may use the DisablePROCHOT.efi file in the EFI/OC/Drivers folder to disable BD PROCHOT. However, if the CPU continues to be fully loaded with BD PROCHOT disabled, the temperature may increase up to 90°C. Beyond 90°C, the device will become unstable and either crash or power off. To avoid this, the temperature needs to be kept under control.
+You may use [arter97's DisablePROCHOT UEFI extension](https://github.com/arter97/DisablePROCHOT) which is already included in the EFI/OC/Drivers folder to disable BD PROCHOT. However, if the CPU continues to be fully loaded with BD PROCHOT disabled, the temperature may increase up to 90°C. Beyond 90°C, the device will become unstable and either crash or power off. To avoid this, the temperature needs to be kept under control.
 
 ## Lowering the temperature
 By default, the long term TDP of the Surface Go 2 is set to 8W. One way to keep the temperature below 80°C is to set the long term TDP to 7W. Offsetting the CPU voltage by 115mV also helps cooling the device.
@@ -137,7 +137,7 @@ _**Please be aware that these hacks may potentially brick your computer! Proceed
 * Power Limit 2, VarStoreInfo (VarOffset/VarName): 0x5B, VarStore: 0x3 (CpuSetup): Default is 0x4650=18000=18Watt
 * Power Limit 1 Time Window, VarStoreInfo (VarOffset/VarName): 0x5F, VarStore: 0x3 (CpuSetup): Default is 0 (infinite)
 
-## Enabling HiDPI display settings in macOS
+## Enabling native HiDPI display settings in macOS
 On the installed macOS system, the default display resolution is too small for a small device such as the Surface Go 2. To enable the native HiDPI settings in the Display Preferences of macOS, download and run the [one-key-hidpi-sgo2](https://github.com/jlempen/one-key-hidpi-sgo2) script. This fork of [xzhih's one-key-hidpi tool](https://github.com/xzhih/one-key-hidpi) was modified for the Surface Go 2.
 
 ## Disabling sleep
