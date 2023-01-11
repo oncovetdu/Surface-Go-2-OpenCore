@@ -55,7 +55,7 @@ This repository features an EFI folder with two distinct `config.plist` files. O
 - [x] CPU SpeedStep (`CPUFriend.kext` with `CPUFriendFriend.kext`)
 - [x] iGPU with full acceleration (`WhateverGreen.kext`, `AAPL,ig-platform-id 0000C087`)
 - [x] SSD drive (`NVMeFix.kext`)
-- [x] USB-C port (`USBPorts.kext`)
+- [x] USB-C port (`USBMap.kext`)
 - [x] WLAN (`AirportItlwm.kext`)
 - [x] Bluetooth (`IntelBluetoothFirmware.kext` with `IntelBTPatcher.kext` and `BlueToolFixup.kext`)
 - [x] Internal speakers, microphone and Combojack (`AppleALC.kext`, `alcid=3`)
