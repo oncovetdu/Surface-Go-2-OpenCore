@@ -137,8 +137,8 @@ _**Please be aware that these hacks may potentially brick your computer! Proceed
 * Power Limit 2, VarStoreInfo (VarOffset/VarName): 0x5B, VarStore: 0x3 (CpuSetup): Default is 0x4650=18000=18Watt
 * Power Limit 1 Time Window, VarStoreInfo (VarOffset/VarName): 0x5F, VarStore: 0x3 (CpuSetup): Default is 0 (infinite)
 
-## Enabling HiDPI display resolutions in macOS
-On the installed macOS system, the default display resolution is too small for a small device such as the Surface Go 2. To enable the native HiDPI settings in the Display Preferences of macOS, download and run the [one-key-hidpi-sgo2](https://github.com/jlempen/one-key-hidpi-sgo2) script. This fork of [xzhih's one-key-hidpi repository](https://github.com/xzhih/one-key-hidpi) was modified for the Surface Go 2.
+## Enabling HiDPI display settings in macOS
+On the installed macOS system, the default display resolution is too small for a small device such as the Surface Go 2. To enable the native HiDPI settings in the Display Preferences of macOS, download and run the [one-key-hidpi-sgo2](https://github.com/jlempen/one-key-hidpi-sgo2) script. This fork of [xzhih's one-key-hidpi tool](https://github.com/xzhih/one-key-hidpi) was modified for the Surface Go 2.
 
 ## Disabling sleep
 https://gist.github.com/pwnsdx/2ae98341e7e5e64d32b734b871614915
