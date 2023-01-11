@@ -13,7 +13,7 @@ I would recommend against installing macOS 13.x Ventura at this time, as there a
 
 I also recommend completely erasing the device's SSD by creating a new GPT partition table before attempting to install macOS, as it makes the installation process much easier. You may use any Linux live ISO with a partitioning tool such as `GParted` or `KPartition` to erase the SSD.
 
-For macOS to be able to boot on the Surface Go 2, the `Secure Boot` option needs to be **disabled** in the BIOS. The boot screen will then display a large red bar with a lock icon at the top of the display when Secure Boot is disabled. This is normal.
+For macOS to be able to boot on the Surface Go 2, the `Secure Boot` option needs to be _**disabled**_ in the BIOS. The boot screen will then display a large red bar with a lock icon at the top of the display when Secure Boot is disabled. This is normal.
 
 Please be aware that all `PlatformInfo` and `SMBIOS` information was removed from the OpenCore `config.plist` files. Users will therefore need to generate their own `PlatformInfo` with [CorpNewt's GenSMBIOS tool](https://github.com/corpnewt/GenSMBIOS) before attempting to boot a Surface Go 2 with this repository's EFI folder.
 
@@ -84,37 +84,48 @@ This repository features an EFI folder with two distinct `config.plist` files. O
 - [ ] LTE
 
 ## Turning off BD PROCHOT
-It's very weird that BD PROCHOT will kick in even at 60 ~ 70c. When it kick in, the cpu will die to 0.4Ghz and become a holy crap. So it's better to turn it off to get a better performance.
+On this device, BD PROCHOT will activate at temperatures as low as 60°C ~ 70°C. When it kicks in, the CPU will throttle down to 0.4Ghz, making the device more or less unusable. That's why BD PROCHOT needs to be disabled in order to increase the performance of the machine.
 
-You can use the DisablePROCHOT.efi file in EFI/OC/Drivers to turn off it. After turnning it off, if the cpu continues to be fully loaded, the temperature may rise to near 90c. Beyond 90c, the device will become unstable, it will either auto power off or crash. So you should also do the following step to lower the temperature.
+You may use the DisablePROCHOT.efi file in the EFI/OC/Drivers folder to disable BD PROCHOT. However, if the CPU continues to be fully loaded with BD PROCHOT disabled, the temperature may increase up to 90°C. Beyond 90°C, the device will become unstable and either crash or power off. To avoid this, the temperature needs to be kept under control.
 
-## Lower the temperatures
-By default, the long term TDP is set to 8 watt, you can lower it to 7 watt to maintain the temp below 80c. Also, offset the cpu voltage by 115mv also help cool the device.
+## Lowering the temperature
+By default, the long term TDP of the Surface Go 2 is set to 8W. One way to keep the temperature below 80°C is to set the long term TDP to 7W. Offsetting the CPU voltage by 115mV also helps cooling the device.
+
+To control undervolting and TDP in macOS, there's a handy tool called [VoltageShift](https://github.com/sicreative/VoltageShift).
 ```
 sudo ./voltageshift buildlaunchd -115 0 0 0 0 0 7 28 18 0.002 60
 ```
-You can remove this by using:
+To disable and reset the device to its original TDP and voltage:
 ```
 ./voltageshift removelaunchd
 ```
-Or manual remove by:
+To manually disable and remove the tool:
  ```
 sudo rm /Library/LaunchDaemons/com.sicreative.VoltageShift.plist
 sudo rm -R /Library/Application\ Support/VoltageShift
 ```
-Please notice if you cannot boot the system after installing, you need to:
-1. Fully turn off Computer (not reboot):
-2. Boot start by Command-R to recovery mode :
-3. In "Terminal" Enable the CSR protection to stop undervoltage running when boot 
+If you are unable to boot the system after installing, you need to:
+1. Shut down the computer (not reboot)
+2. Boot to recovery mode with Command-R
+3. In the terminal, enable the CSR protection to stop the undervolting daemon from launching at boot 
 ```
 csrutil enable    
 ```
-4. Reboot and Remove all the above files
+4. Reboot and delete all the above files
 
 ## UEFI BIOS hacks
-The BIOS UI of the Surface Go 2 features only a limited number of settings. In order to take advantage of better CPU power management and graphics acceleration, there are a few other settings that need to be changed in the BIOS. The only way to achieve this is to make use of the [RU tool](http://ruexe.blogspot.com). The [Dortania OpenCore Post-Install guide](https://dortania.github.io/OpenCore-Post-Install/misc/msr-lock.html#turning-off-cfg-lock-manually) has detailed instructions for this.
+The UEFI BIOS UI of the Surface Go 2 shows only a few trivial settings. In order to take advantage of better CPU power management and graphics acceleration, there are a few other settings that need to be changed in the UEFI BIOS. The only way to achieve this is to use the [RU tool](http://ruexe.blogspot.com). The [Dortania OpenCore Post-Install guide](https://dortania.github.io/OpenCore-Post-Install/misc/msr-lock.html#turning-off-cfg-lock-manually) has detailed instructions on how to use the RU tool.
 
-**Please be aware that these hacks may potentially brick your computer! Proceed carefully and only if you know what you are doing!**
+_**Please be aware that these hacks may potentially brick your computer! Proceed carefully and only if you know what you are doing!**_
+
+### UEFI BIOS variables which need to be modified
+| Name   | From    | To |
+| ---------------- | --------- | --------- |
+| CFG Lock | Enable | Disable |
+| VT-d | Enable | Disable |
+| DVMT | 32MB | 64MB |
+| Enable Hibernation | Enable | Disable |
+| Fast Boot | Enable | Disable |
 
 ## Addresses of the UEFI BIOS variables
 * CFG Lock: VarStoreInfo (VarOffset/VarName): 0x3C, VarStore: 0x3 (CpuSetup)
@@ -124,16 +135,13 @@ The BIOS UI of the Surface Go 2 features only a limited number of settings. In o
 * Fast Boot:, VarStoreInfo (VarOffset/VarName): 0x101, VarStore: 0x1234 (Setup)
 * Power Limit 1, VarStoreInfo (VarOffset/VarName): 0x57, VarStore: 0x3 (CpuSetup): Default is 0x1f40=8000=8Watt
 * Power Limit 2, VarStoreInfo (VarOffset/VarName): 0x5B, VarStore: 0x3 (CpuSetup): Default is 0x4650=18000=18Watt
-* Power Limit 1 Time Window, VarStoreInfo (VarOffset/VarName): 0x5F, VarStore: 0x3 (CpuSetup): Default is 0 (infinate)
+* Power Limit 1 Time Window, VarStoreInfo (VarOffset/VarName): 0x5F, VarStore: 0x3 (CpuSetup): Default is 0 (infinite)
 
-### UEFI BIOS options that need to be modified
-| Name   | From    | To |
-| ---------------- | --------- | --------- |
-| CFG Lock | Enable | Disable |
-| VT-d | Enable | Disable |
-| DVMT | 32MB | 64MB |
-| Enable Hibernation | Enable | Disable |
-| Fast Boot | Enable | Disable |
+## Enabling HiDPI display resolutions in macOS
+On the installed macOS system, the default display resolution is too small for a small device such as the Surface Go 2. To enable the native HiDPI settings in the Display Preferences of macOS, download and run the `one-key-hidpi` script in this repository. This version has beek forked from [xzhih's one-key-hidpi repository](https://github.com/xzhih/one-key-hidpi) and modified for the Surface Go 2.
+
+## Disabling sleep
+https://gist.github.com/pwnsdx/2ae98341e7e5e64d32b734b871614915
 
 ## Related issues
 * https://github.com/VoodooI2C/VoodooI2CHID/pull/48
@@ -142,9 +150,6 @@ The BIOS UI of the Surface Go 2 features only a limited number of settings. In o
 * https://www.reddit.com/r/hackintosh/comments/mrfmmk/surface_go2_hackintosh/
 * https://www.reddit.com/r/hackintosh/comments/nm6nh7/surface_go_2_has_anyone_ever_attempted_this/
 * https://github.com/linux-surface/linux-surface/wiki/Surface-Go-2
-
-## Disable sleep
-https://gist.github.com/pwnsdx/2ae98341e7e5e64d32b734b871614915
 
 ## Useful links
 * https://www.anandtech.com/show/6355/intels-haswell-architecture/3
