@@ -6,14 +6,12 @@ macOS on the Core m3-8100Y Microsoft Surface Go 2 thanks to [Acidanthera's OpenC
 ## Disclaimer
 This repository is neither a howto nor an installation manual. Using these files requires at least basic knowledge of [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg), ACPI, UEFI and the art of hackintoshing in general. I recommend reading the excellent [Dortania's OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide), as well as all its linked resources.
 
-## Miscellaneous information
-Although this repository is a fork of [kingo132's excellent Surface Go 2 hackintosh repository](https://github.com/kingo132/surface-go2-hackintosh), my OpenCore EFI folder was built from scratch by following [Dortania's OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide) with the latest releases of [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg) and every required kexts. Nevertheless, [kingo132's repository](https://github.com/kingo132/surface-go2-hackintosh) provided an extremely valuable and helpful resource for building my OpenCore EFI folder and hacking the tablet's UEFI BIOS.
+Although this repository is a fork of [kingo132's Surface Go 2 hackintosh repository](https://github.com/kingo132/surface-go2-hackintosh), my OpenCore EFI folder was built from scratch by following [Dortania's OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide) with the latest releases of [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg) and every required kexts. Nevertheless, [kingo132's repository](https://github.com/kingo132/surface-go2-hackintosh) provided an extremely valuable and helpful resource for building my OpenCore EFI folder and hacking the tablet's UEFI BIOS.
 
-Unlike other Microsoft Surface devices, the Surface Go 2 is a fairly standard PC, which makes it an ideal candidate for a small and light hackintosh laptop. It uses common hardware components and doesn't require using special kexts such as [Xiashangning's BigSurface kext](https://github.com/Xiashangning/BigSurface). The Surface Go 2 runs macOS quite well, as it is built around the Core m3-8100Y processor, which is similar to the Core i5-8210Y processor found in the 2018 and 2019 Apple MacBook Air. Aside from the broken front and back cameras and the broken sleep/wake, everything else works quite nicely and makes for an enjoyable macOS experience. Don't expect a fancy macOS tablet, though, as the operating system was not conceived for touchscreens anyway (go buy an iPad instead...).
-
+## Recommendations
 I would recommend against installing macOS 13.x Ventura at this time, as there are still a few issues that need fixing, mainly a nasty [VoodooInput bug](https://github.com/VoodooI2C/VoodooI2C/issues/507#issuecomment-1367947816) causing a kernel panic and weird behaviour from the [OpenIntelWireless AirportItlwm v2.2.0-alpha](https://github.com/OpenIntelWireless/itlwm/releases/tag/v2.2.0-alpha) Wifi drivers.
 
-I also recommend completely erasing the device's SSD by creating a new GPT partition table before attempting to install macOS, as it makes the installation process much easier. You may use any Linux live ISO with a partitioning tool such as `GParted` or `KPartition` to erase the SSD. Dual/triple booting with Windows and/or Linux is achievable, but not quite straightforward, the EFI partition of the original Windows install being too small to contain OpenCore and Windows/Linux simultaneously. Once macOS has been installed on the SSD, you may install Windows/Linux by resizing the macOS partition with the `BootCamp Assistant` or `Disk Utility` in macOS and install another operating system in the newly created partition.
+I also recommend completely erasing the device's SSD by creating a new GPT partition table before attempting to install macOS, as it makes the installation process much easier. You may use any Linux live ISO with a partitioning tool such as `GParted` or `KPartition` to erase the SSD.
 
 For macOS to be able to boot on the Surface Go 2, the `Secure Boot` option needs to be **disabled** in the BIOS. The boot screen will then display a large red bar with a lock icon at the top of the display when Secure Boot is disabled. This is normal.
 
@@ -85,7 +83,7 @@ This repository features an EFI folder with two distinct `config.plist` files. O
 - [ ] NFC
 - [ ] LTE
 
-## Turn off BD PROCHOT
+## Turning off BD PROCHOT
 It's very weird that BD PROCHOT will kick in even at 60 ~ 70c. When it kick in, the cpu will die to 0.4Ghz and become a holy crap. So it's better to turn it off to get a better performance.
 
 You can use the DisablePROCHOT.efi file in EFI/OC/Drivers to turn off it. After turnning it off, if the cpu continues to be fully loaded, the temperature may rise to near 90c. Beyond 90c, the device will become unstable, it will either auto power off or crash. So you should also do the following step to lower the temperature.
