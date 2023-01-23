@@ -51,8 +51,8 @@ This repository features an EFI folder with two distinct `config.plist` files. O
 | Accelerometers, gyroscopes, ambient light sensors | |
 
 ## What works
-- [x] CPU power management (`CPUFriend.kext` with `CPUFriendFriend.kext`)
-- [x] CPU SpeedStep (`CPUFriend.kext` with `CPUFriendFriend.kext`)
+- [x] CPU power management (`CPUFriend.kext` with `CPUFriendDataProvider.kext`)
+- [x] CPU SpeedStep (`CPUFriend.kext` with `CPUFriendDataProvider.kext`)
 - [x] iGPU with full acceleration (`WhateverGreen.kext`, `AAPL,ig-platform-id 00001B59`)
 - [x] SSD drive (`NVMeFix.kext`)
 - [x] USB-C port (`USBMap.kext`)
