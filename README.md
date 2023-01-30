@@ -1,6 +1,6 @@
 ![OpenCore logo](https://github.com/acidanthera/OpenCorePkg/raw/master/Docs/Logos/OpenCore_with_text_Small.png)
 
-# Surface-Go2-macOS
+# Surface-Go-2-OpenCore
 macOS on the Core m3-8100Y Microsoft Surface Go 2 thanks to [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg).
 
 ## Disclaimer
