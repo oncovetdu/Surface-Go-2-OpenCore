@@ -37,17 +37,17 @@ This repository features an EFI folder with two distinct `config.plist` files. O
 | Wifi + Bluetooth | Wifi6 AX200, Bluetooth 5.0 |
 | Storage          | Kioxia/Toshiba 128GB SSD |
 | USB Type-C 3.1 Gen 1 | Supports Power Delivery and DisplayPort |
-| MicroSD Card reader | Realtek PCI-E Card Reader, `152D:1237` |
-| Front & Rear camera | Intel(R) AVStream Camera 2500, ISP Interface, `8086:591c`, 8 MPix/5 MPix |
-| IR camera | Intel(R) AVStream Camera 2500, ISP Interface, `8086:591c` |
-| Keyboard / Trackpad | Microsoft Type Cover, `045E:096F` |
+| MicroSD Card reader | Realtek PCI-E Card Reader |
+| Front & Rear camera | Intel(R) AVStream Camera 2500, ISP Interface, 8 MPix/5 MPix |
+| IR camera | Intel(R) AVStream Camera 2500, ISP Interface |
+| Keyboard / Trackpad | Microsoft Type Cover |
 | Display | 10.50 inch 3:2, 1920 x 1280 pixel 220 PPI, 10-Point Capacitive |
-| Touchscreen | `ELAN9038`, `\_SB.PCI0.I2C1.TPL1`, `8086:9d61` |
+| Touchscreen | `ELAN9038`, `\_SB.PCI0.I2C1.TPL1` |
 | Screen | BOE CQ NV105WAM-N31, BOE088B |
 | NFC | NXP NFC Client Device, NXP3001 |
 | Battery | 26.81Wh 7.66v 3500mAh |
 | LTE (if available) | Surface Mobile Broadband, USB device, `045E:09A5`, Qualcomm Snapdragon X16 LTE |
-| GPS (if available) | `MSHW0142` |
+| GPS (if available) | |
 | Accelerometers, gyroscopes, ambient light sensors | |
 
 ## What works
