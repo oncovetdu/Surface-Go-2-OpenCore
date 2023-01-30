@@ -46,7 +46,7 @@ This repository features an EFI folder with two distinct `config.plist` files. O
 | Screen | BOE CQ NV105WAM-N31, BOE088B |
 | NFC | NXP NFC Client Device, NXP3001 |
 | Battery | 26.81Wh 7.66v 3500mAh |
-| LTE (if available) | Surface Mobile Broadband, USB device, `045E:09A5`, Qualcomm Snapdragon X16 LTE |
+| LTE (if available) | Surface Mobile Broadband, USB device, Qualcomm Snapdragon X16 LTE |
 | GPS (if available) | |
 | Accelerometers, gyroscopes, ambient light sensors | |
 
