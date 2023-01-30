@@ -114,28 +114,17 @@ csrutil enable
 4. Reboot and delete all the above files
 
 ## UEFI BIOS hacks
-The UEFI BIOS UI of the Surface Go 2 shows only a few trivial settings. In order to take advantage of better CPU power management and graphics acceleration, there are a few other settings that need to be changed in the UEFI BIOS. The only way to achieve this is to use the [RU tool](http://ruexe.blogspot.com). The [Dortania OpenCore Post-Install guide](https://dortania.github.io/OpenCore-Post-Install/misc/msr-lock.html#turning-off-cfg-lock-manually) has detailed instructions on how to use the RU tool.
+The UEFI BIOS UI of the Surface Go 2 shows only a few trivial settings. In order to take advantage of better CPU power management and graphics acceleration, there are a few other settings that need to be changed in the UEFI BIOS. The best way to achieve this is to use the [RU.efi tool](http://ruexe.blogspot.com) or the new [setup_var.efi tool](https://github.com/datasone/setup_var.efi). The [Dortania OpenCore Post-Install guide](https://dortania.github.io/OpenCore-Post-Install/misc/msr-lock.html#turning-off-cfg-lock-manually) has detailed instructions on how to use the RU.efi tool.
 
 _**Please be aware that these hacks may potentially brick your computer! Proceed carefully and only if you know what you are doing!**_
 
 ### UEFI BIOS variables which need to be modified
-| Name   | From    | To |
-| ---------------- | --------- | --------- |
-| CFG Lock | Enable | Disable |
-| VT-d | Enable | Disable |
-| DVMT | 32MB | 64MB |
-| Enable Hibernation | Enable | Disable |
-| Fast Boot | Enable | Disable |
-
-## Addresses of the UEFI BIOS variables
-* CFG Lock: VarStoreInfo (VarOffset/VarName): 0x3C, VarStore: 0x3 (CpuSetup)
-* VT-d: VarStoreInfo (VarOffset/VarName): 0xE3, VarStore: 0x2 (SaSetup)
-* DVMT Pre-Allocated, VarStoreInfo (VarOffset/VarName): 0xDF, VarStore: 0x2 (SaSetup)
-* Enable Hibernation, VarStoreInfo (VarOffset/VarName): 0x1E6, VarStore: 0x1234 (Setup)
-* Fast Boot:, VarStoreInfo (VarOffset/VarName): 0x101, VarStore: 0x1234 (Setup)
-* Power Limit 1, VarStoreInfo (VarOffset/VarName): 0x57, VarStore: 0x3 (CpuSetup): Default is 0x1f40=8000=8Watt
-* Power Limit 2, VarStoreInfo (VarOffset/VarName): 0x5B, VarStore: 0x3 (CpuSetup): Default is 0x4650=18000=18Watt
-* Power Limit 1 Time Window, VarStoreInfo (VarOffset/VarName): 0x5F, VarStore: 0x3 (CpuSetup): Default is 0 (infinite)
+| VarName | VarOffset | VarStore | From | To |
+| ---------------- | -- | -- | --------- | --------- |
+| CFG Lock | 0x3C | 0x3 (CpuSetup) | 0x1 (Enabled) | 0x0 (Disabled) |
+| VT-d | 0xE3 | 0x2 (SaSetup) | 0x1 (Enabled) | 0x0 (Disabled) |
+| DVMT Pre-Allocated | 0xDF | 0x2 (SaSetup) | 0x1 (32M) | 0x2 (64M) |
+| DVMT Total Gfx Mem | 0xE0 | 0x2 (SaSetup) | 0x2 (256M) | 0x3 (MAX) |
 
 ## Enabling native HiDPI display settings in macOS
 On the installed macOS system, the default display resolution is too small for a small device such as the Surface Go 2. To enable the native HiDPI settings in the Display Preferences of macOS, download and run the [one-key-hidpi](https://github.com/jlempen/one-key-hidpi) script and select the option `(4) 1920x1280 Display`. This fork of [xzhih's one-key-hidpi tool](https://github.com/xzhih/one-key-hidpi) was modified to add the 1920x1280 resolution needed for the Surface Go 2.
