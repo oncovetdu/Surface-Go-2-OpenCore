@@ -88,6 +88,8 @@ On this device, BD PROCHOT will activate at temperatures as low as 60°C ~ 70°C
 
 You may use [arter97's DisablePROCHOT UEFI extension](https://github.com/arter97/DisablePROCHOT) which is already included in the EFI/OC/Drivers folder to disable BD PROCHOT. However, if the CPU continues to be fully loaded with BD PROCHOT disabled, the temperature may increase up to 90°C. Beyond 90°C, the device will become unstable and either crash or power off. To avoid this, the temperature needs to be kept under control.
 
+The DisablePROCHOT.efi driver is included but disabled in both config.plist files, as enabling it leads to the CPU overheating and the computer shutting down during install. You may enable the driver once macOS is installed on the device.
+
 ## Lowering the temperature
 By default, the long term TDP of the Surface Go 2 is set to 8W. One way to keep the temperature below 80°C is to set the long term TDP to 7W. Offsetting the CPU voltage by 115mV also helps cooling the device.
 
