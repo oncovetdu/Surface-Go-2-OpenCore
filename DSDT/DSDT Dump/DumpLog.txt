@@ -1,0 +1,38 @@
+37:785  3:445  Found UEFI Acpi 2.0 RSDP at 8affd014
+37:785  0:000  Saving ACPI tables from RSDP 8affd014 to ACPI\origin ...
+37:785  0:000   8affd014: 'RSD PTR ', Rev: 2 (Acpi 2.0 or newer), Len: 36
+37:785  0:000    (Xsdt: 8afb6188, Rsdt: 8afb60c4)
+37:785  0:000    8afb6188: 'XSDT', 'MSFT', Rev: 1, Len: 260
+37:785  0:000    8afb60c4: 'RSDT', 'MSFT', Rev: 1, Len: 148
+37:785  0:000    Tables in Xsdt: 28
+37:785  0:000    0. 8aff3000: 'FACP', 'MSFT', Rev: 5, Len: 268
+37:785  0:000        (Dsdt: 8AFC1000, Facs: 8AF55000, XDsdt: 8afc1000, XFacs: 0)
+37:785  0:000        8afc1000: 'DSDT', 'MSFT', Rev: 2, Len: 188288
+37:789  0:003        8af55000: 'FACS', Ver: 2, Len: 64
+37:789  0:000    1. 8affc000: 'UEFI', 'MSFT', Rev: 1, Len: 66
+37:789  0:000    2. 8affb000: 'MSDM', 'MSFT', Rev: 3, Len: 85
+37:789  0:000    3. 8affa000: 'SSDT', 'MSFT', Rev: 2, Len: 1219
+37:789  0:000    4. 8aff9000: 'SSDT', 'MSFT', Rev: 2, Len: 70
+37:789  0:000    5. 8aff8000: 'TPM2', 'MSFT', Rev: 3, Len: 52
+37:789  0:000    6. 8aff4000: 'SSDT', 'MSFT', Rev: 2, Len: 12600
+37:789  0:000    7. 8aff2000: 'HPET', 'MSFT', Rev: 1, Len: 56
+37:789  0:000    8. 8aff1000: 'APIC', 'MSFT', Rev: 3, Len: 300
+37:789  0:000    9. 8aff0000: 'MCFG', 'MSFT', Rev: 1, Len: 60
+37:789  0:000    10. 8afbf000: 'SSDT', 'MSFT', Rev: 2, Len: 6792
+37:789  0:000    11. 8afbe000: 'SSDT', 'MSFT', Rev: 2, Len: 639
+37:789  0:000    12. 8afbd000: 'LPIT', 'MSFT', Rev: 1, Len: 148
+37:789  0:000    13. 8afbc000: 'WSMT', 'MSFT', Rev: 1, Len: 40
+37:789  0:000    14. 8afbb000: 'SSDT', 'MSFT', Rev: 2, Len: 671
+37:789  0:000    15. 8afba000: 'SSDT', 'MSFT', Rev: 1, Len: 838
+37:789  0:000    16. 8afb9000: 'SSDT', 'MSFT', Rev: 2, Len: 3693
+37:789  0:000    17. 8afb8000: 'SSDT', 'MSFT', Rev: 2, Len: 774
+37:789  0:000    18. 8afb7000: 'DBGP', 'MSFT', Rev: 1, Len: 52
+37:789  0:000    19. 8afb5000: 'DBG2', 'MSFT', Rev: 0, Len: 84
+37:789  0:000    20. 8afb4000: 'SSDT', 'MSFT', Rev: 2, Len: 3808
+37:789  0:000    21. 8afb2000: 'SSDT', 'MSFT', Rev: 2, Len: 6062
+37:789  0:000    22. 8afad000: 'SSDT', 'MSFT', Rev: 2, Len: 17181
+37:789  0:000    23. 8afac000: 'SSDT', 'MSFT', Rev: 2, Len: 1380
+37:789  0:000    24. 8afef000: 'DMAR', 'MSFT', Rev: 1, Len: 168
+37:789  0:000    25. 8afab000: 'NHLT', 'MSFT', Rev: 0, Len: 45
+37:789  0:000    26. 8afaa000: 'FPDT', 'MSFT', Rev: 1, Len: 68
+37:789  0:000    27. 8afa9000: 'BGRT', 'MSFT', Rev: 1, Len: 56
