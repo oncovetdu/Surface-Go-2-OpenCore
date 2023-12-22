@@ -9,7 +9,7 @@ This repository is neither a howto nor an installation manual. Using these files
 Although this repository is a fork of [kingo132's Surface Go 2 hackintosh repository](https://github.com/kingo132/surface-go2-hackintosh), my OpenCore EFI folder was built from scratch by following [Dortania's OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide) with the latest releases of [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg) and every required kexts. Nevertheless, [kingo132's repository](https://github.com/kingo132/surface-go2-hackintosh) provided an extremely valuable and helpful resource for building my OpenCore EFI folder and hacking the tablet's UEFI BIOS.
 
 ## Recommendations
-I also recommend completely erasing the device's SSD by creating a new GPT partition table before attempting to install macOS, as it makes the installation process much easier. You may use any Linux live ISO with a partitioning tool such as `GParted` or `KPartition` to erase the SSD.
+I recommend completely erasing the device's SSD by creating a new GPT partition table before attempting to install macOS, as it makes the installation process much easier. You may use any Linux live ISO with a partitioning tool such as `GParted` or `KPartition` to erase the SSD.
 
 For macOS to be able to boot on the Surface Go 2, the `Secure Boot` option needs to be _**disabled**_ in the BIOS. The boot screen will then display a large red bar with a lock icon at the top of the display when Secure Boot is disabled. This is normal.
 
@@ -49,21 +49,21 @@ This repository features an EFI folder with two distinct `config.plist` files. O
 | Accelerometers, gyroscopes, ambient light sensors | |
 
 ## What works
-- [x] CPU power management (`CPUFriend.kext` with `CPUFriendDataProvider.kext`)
-- [x] CPU SpeedStep (`CPUFriend.kext` with `CPUFriendDataProvider.kext`)
-- [x] iGPU with full acceleration (`WhateverGreen.kext`, `AAPL,ig-platform-id 00001B59`)
+- [x] CPU power management (`SSDT-PLUG.aml`)
+- [x] CPU SpeedStep (`CPUFriend.kext`, `CPUFriendDataProvider.kext`)
+- [x] iGPU with full acceleration (`SSDT-PNLF.aml`, `WhateverGreen.kext`, `AAPL,ig-platform-id 00001B59`)
 - [x] SSD drive (`NVMeFix.kext`)
-- [x] USB-C port (`USBMap.kext`)
+- [x] USB-C port (`SSDT-EC-USBX-LAPTOP.aml`, `USBMap.kext`)
 - [x] WLAN (`AirportItlwm.kext`)
-- [x] Bluetooth (`IntelBluetoothFirmware.kext` with `IntelBTPatcher.kext` and `BlueToolFixup.kext`)
+- [x] Bluetooth (`IntelBluetoothFirmware.kext`, `IntelBTPatcher.kext`, `BlueToolFixup.kext`)
 - [x] Internal speakers, microphone and Combojack (`AppleALC.kext`, `alcid=3`)
 - [x] Power, volume up and volume down buttons (`VoodooPS2.kext`)
-- [x] Surface Type Cover keyboard with working brightness, volume and mute keys
-- [x] Surface Type Cover trackpad with native multi-touch gestures (`VoodooI2C` with `VoodooI2CHID`)
-- [x] Touchscreen (`VoodooI2C.kext` with `VoodooI2CHID.kext`)
-- [x] Surface Pen, works but no pressure sensitivity (`VoodooI2C.kext` with `VoodooI2CHID.kext`)
-- [x] MicroSD Card reader (`RealtekCardReader.kext` with `RealtekCardReaderFriend.kext`)
-- [x] Battery percentage and cycle count (`VirtualSMC.kext` with `SMCBatteryManager.kext`)
+- [x] Surface Type Cover keyboard with working brightness, volume and mute keys (`VoodooPS2.kext`)
+- [x] Surface Type Cover trackpad with native multi-touch gestures (`SSDT-XOSI.aml`, `VoodooI2C`, `VoodooI2CHID`)
+- [x] Touchscreen (`SSDT-XOSI.aml`, `VoodooI2C.kext`, `VoodooI2CHID.kext`)
+- [x] Surface Pen (`SSDT-XOSI.aml`, `VoodooI2C.kext`, `VoodooI2CHID.kext`)
+- [x] MicroSD Card reader (`RealtekCardReader.kext`, `RealtekCardReaderFriend.kext`)
+- [x] Battery percentage and cycle count (`VirtualSMC.kext`, `SMCBatteryManager.kext`)
 - [x] USB Type-C to HDMI
 - [x] USB Type-C to USB3 & USB2
 - [x] USB Type-C Power Delivery
@@ -71,7 +71,6 @@ This repository features an EFI folder with two distinct `config.plist` files. O
 ## What needs some more work
 - [ ] Sleep/wake - the device wakes up from sleep displaying the Surface logo on the internal display
 - [ ] Type Cover - the caps lock led does not light up when enabled: [issue fired](https://github.com/VoodooI2C/VoodooI2CHID/pull/52#issuecomment-841795827)
-- [ ] Speakers - the speakers seem a little too quiet, using another AppleALC `device-id` may help
 - [ ] Accelerometers, gyroscope
 - [ ] Ambient light sensor
 
@@ -115,6 +114,8 @@ csrutil enable
 
 ## UEFI BIOS hacks
 The UEFI BIOS UI of the Surface Go 2 shows only a few trivial settings. In order to take advantage of better CPU power management and graphics acceleration, there are a few other settings that need to be changed in the UEFI BIOS. The best way to achieve this is to use the [RU.efi tool](http://ruexe.blogspot.com) or the new [setup_var.efi tool](https://github.com/datasone/setup_var.efi). The [Dortania OpenCore Post-Install guide](https://dortania.github.io/OpenCore-Post-Install/misc/msr-lock.html#turning-off-cfg-lock-manually) has detailed instructions on how to use the RU.efi tool.
+
+Hint: the `RU.efi` tool is included in this EFI folder and may be launched from the OpenCore picker in the Auxiliary tools section.
 
 _**Please be aware that these hacks may potentially brick your computer! Proceed carefully and only if you know what you are doing!**_
 
