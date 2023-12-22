@@ -1332,7 +1332,7 @@ en-US:0</string>
 				<key>Comment</key>
 				<string>DisablePROCHOT.efi</string>
 				<key>Enabled</key>
-				<true/>
+				<false/>
 				<key>LoadEarly</key>
 				<false/>
 				<key>Path</key>
