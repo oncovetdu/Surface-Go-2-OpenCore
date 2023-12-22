@@ -113,7 +113,7 @@ csrutil enable
 4. Reboot and delete all the above files
 
 ## UEFI BIOS hacks
-The UEFI BIOS UI of the Surface Go 2 shows only a few trivial settings. In order to take advantage of better CPU power management and graphics acceleration, there are a few other settings that need to be changed in the UEFI BIOS. The best way to achieve this is to use the [RU.efi tool](http://ruexe.blogspot.com) or the new [setup_var.efi tool](https://github.com/datasone/setup_var.efi). The [Dortania OpenCore Post-Install guide](https://dortania.github.io/OpenCore-Post-Install/misc/msr-lock.html#turning-off-cfg-lock-manually) has detailed instructions on how to use the RU.efi tool.
+The UEFI BIOS UI of the Surface Go 2 shows only a few trivial settings. In order to take advantage of better CPU power management and graphics acceleration, there are a few other settings that need to be changed in the UEFI BIOS. The best way to achieve this is to use the [RU.efi tool](http://ruexe.blogspot.com) or the new [setup_var.efi tool](https://github.com/datasone/setup_var.efi). The [Dortania OpenCore Post-Install guide](https://dortania.github.io/OpenCore-Post-Install/misc/msr-lock.html#turning-off-cfg-lock-manually) has detailed instructions on how to use the `RU.efi` tool.
 
 Hint: the `RU.efi` tool is included in this EFI folder and may be launched from the OpenCore picker in the Auxiliary tools section.
 
@@ -131,7 +131,14 @@ _**Please be aware that these hacks may potentially brick your computer! Proceed
 On the installed macOS system, the default display resolution is too small for a small device such as the Surface Go 2. To enable the native HiDPI settings in the Display Preferences of macOS, download and run the [one-key-hidpi](https://github.com/jlempen/one-key-hidpi) script and select the option `(4) 1920x1280 Display`. This fork of [xzhih's one-key-hidpi tool](https://github.com/xzhih/one-key-hidpi) was modified to add the 1920x1280 resolution needed for the Surface Go 2.
 
 ## Disabling sleep
-https://gist.github.com/pwnsdx/2ae98341e7e5e64d32b734b871614915
+As there is still no solution to the sleep issue on the Surface Go 2, it is recommended to disable Sleep altogether for now:
+```
+sudo pmset -a sleep 0
+sudo pmset -a hibernatemode 0
+sudo pmset -a disablesleep 1
+```
+
+There have been reports that the Surface Go 2 is able to successfully enter and wake from Hibernation instead of Sleep [in this discussion](https://github.com/jlempen/Surface-Go-2-OpenCore/issues/1#issuecomment-1500697563), but I haven't been able to make it work yet. The [SSDT-GPRW.aml and the GPRW to XPRW patch](https://dortania.github.io/OpenCore-Post-Install/usb/misc/instant-wake.html) are enabled in this EFI folder for those who want to troubleshoot the sleep and/or hibernate issues.
 
 ## Related issues
 * https://github.com/VoodooI2C/VoodooI2CHID/pull/48
