@@ -17,6 +17,9 @@ Please be aware that all `PlatformInfo` and `SMBIOS` information was removed fro
 
 This repository features an EFI folder with two distinct `config.plist` files. One is meant to be used without the UEFI BIOS hacks below (`config_easy.plist`), the other one (`config_hard.plist`) will only boot after the UEFI hacks have been applied. Simply rename the config file you plan to use to `config.plist` and delete the other config file.
 
+The `kexts` required to enable the trackpad and the touchscreen are special versions of `VoodooI2C.kext` and `VoodooI2CHID.kext` [patched and improved by lazd](https://github.com/jlempen/Surface-Go-2-OpenCore/issues/1#issuecomment-1705597716). Updating those `kexts` with the official ones from [the VoodooI2C repo](https://github.com/VoodooI2C) will most certainly break trackpad and touchscreen functionality! They were renamed to `VoodooI2C-SurfaceTouch.kext` and `VoodooI2CHID-SurfaceTouch.kext` so as not to be auto-updated by tools such as [OCAT](https://github.com/ic005k/OCAuxiliaryTools).
+The `AirportItlwm.kext` from the [OpenIntelWireless repo](https://github.com/OpenIntelWireless/itlwm) is required to enable the Wifi chip and was renamed to `AirportItlwm-Sonoma.kext` for the same reason.
+
 ## Software Specifications
 | Software         | Version                            |
 | ---------------- | ---------------------------------- |
