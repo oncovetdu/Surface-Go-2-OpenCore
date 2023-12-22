@@ -22,8 +22,8 @@ This repository features an EFI folder with two distinct `config.plist` files. O
 ## Software Specifications
 | Software         | Version                            |
 | ---------------- | ---------------------------------- |
-| Target OS        | Apple macOS 12.6.2 Monterey |
-| OpenCore         | MOD-OC v0.8.8 |
+| Target OS        | Apple macOS 14.2.1 Sonoma |
+| OpenCore         | MOD-OC v0.9.7 |
 | SMBIOS           | MacBookAir8,1 |
 | SSD format       | APFS file system, GPT partition table |
 
