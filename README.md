@@ -9,8 +9,6 @@ This repository is neither a howto nor an installation manual. Using these files
 Although this repository is a fork of [kingo132's Surface Go 2 hackintosh repository](https://github.com/kingo132/surface-go2-hackintosh), my OpenCore EFI folder was built from scratch by following [Dortania's OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide) with the latest releases of [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg) and every required kexts. Nevertheless, [kingo132's repository](https://github.com/kingo132/surface-go2-hackintosh) provided an extremely valuable and helpful resource for building my OpenCore EFI folder and hacking the tablet's UEFI BIOS.
 
 ## Recommendations
-I would recommend against installing macOS 13.x Ventura at this time, as there are still a few issues that need fixing, mainly a nasty [VoodooInput bug](https://github.com/VoodooI2C/VoodooI2C/issues/507#issuecomment-1367947816) causing a kernel panic and weird behaviour from the [OpenIntelWireless AirportItlwm v2.2.0-alpha](https://github.com/OpenIntelWireless/itlwm/releases/tag/v2.2.0-alpha) Wifi drivers.
-
 I also recommend completely erasing the device's SSD by creating a new GPT partition table before attempting to install macOS, as it makes the installation process much easier. You may use any Linux live ISO with a partitioning tool such as `GParted` or `KPartition` to erase the SSD.
 
 For macOS to be able to boot on the Surface Go 2, the `Secure Boot` option needs to be _**disabled**_ in the BIOS. The boot screen will then display a large red bar with a lock icon at the top of the display when Secure Boot is disabled. This is normal.
