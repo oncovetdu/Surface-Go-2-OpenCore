@@ -21,7 +21,7 @@ This repository features an EFI folder with two distinct `config.plist` files. O
 | Software         | Version                            |
 | ---------------- | ---------------------------------- |
 | Target OS        | Apple macOS 14.2.1 Sonoma |
-| OpenCore         | MOD-OC v0.9.7 |
+| OpenCore         | [MOD-OC v0.9.7](https://github.com/wjz304/OpenCore_NO_ACPI_Build/releases/download/0.9.7_9802d1c/OpenCore-Mod-0.9.7-RELEASE.zip) |
 | SMBIOS           | MacBookAir8,1 |
 | SSD format       | APFS file system, GPT partition table |
 
