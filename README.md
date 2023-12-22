@@ -87,30 +87,14 @@ You may use [arter97's DisablePROCHOT UEFI extension](https://github.com/arter97
 
 The DisablePROCHOT.efi driver is included but disabled in both config.plist files, as enabling it leads to the CPU overheating and the computer shutting down during install. You may enable the driver once macOS is installed on the device.
 
-## Lowering the temperature
-By default, the long term TDP of the Surface Go 2 is set to 8W. One way to keep the temperature below 80°C is to set the long term TDP to 7W. Offsetting the CPU voltage by 115mV also helps cooling the device.
+## Undervolting to reduce heat and improve performance
+There are two undervolting tools available for macOS:
+* [Volta](https://volta.garymathews.com)
+* [VoltageShift](https://github.com/sicreative/VoltageShift)
 
-To control undervolting and TDP in macOS, there's a handy tool called [VoltageShift](https://github.com/sicreative/VoltageShift).
-```
-sudo ./voltageshift buildlaunchd -115 0 0 0 0 0 7 28 18 0.002 60
-```
-To disable and reset the device to its original TDP and voltage:
-```
-./voltageshift removelaunchd
-```
-To manually disable and remove the tool:
- ```
-sudo rm /Library/LaunchDaemons/com.sicreative.VoltageShift.plist
-sudo rm -R /Library/Application\ Support/VoltageShift
-```
-If you are unable to boot the system after installing, you need to:
-1. Shut down the computer (not reboot)
-2. Boot to recovery mode with Command-R
-3. In the terminal, enable the CSR protection to stop the undervolting daemon from launching at boot 
-```
-csrutil enable    
-```
-4. Reboot and delete all the above files
+The `VoltageShift.kext` is already included and enabled in this repository's `Kexts` folder. To be able to launch the `voltageshift` command line tool from anywhere, copy [VoltageShift from the Tools folder](https://github.com/jlempen/Surface-Go-2-OpenCore/blob/main/Tools/VoltageShift-EFI.zip) to your `/usr/local/bin` folder by entering `sudo cp voltageshift /usr/local/bin/` in the macOS terminal after navigating to the folder where you downloaded and unzipped the `voltageshift` executable file.
+
+Please refer to the instructions found in the [VoltageShift repository](https://github.com/sicreative/VoltageShift), as well as to the excellent howto found in [zearp's repository](https://github.com/zearp/Nucintosh#undervolting).
 
 ## UEFI BIOS hacks
 The UEFI BIOS UI of the Surface Go 2 shows only a few trivial settings. In order to take advantage of better CPU power management and graphics acceleration, there are a few other settings that need to be changed in the UEFI BIOS. The best way to achieve this is to use the [RU.efi tool](http://ruexe.blogspot.com) or the new [setup_var.efi tool](https://github.com/datasone/setup_var.efi). The [Dortania OpenCore Post-Install guide](https://dortania.github.io/OpenCore-Post-Install/misc/msr-lock.html#turning-off-cfg-lock-manually) has detailed instructions on how to use the `RU.efi` tool.
