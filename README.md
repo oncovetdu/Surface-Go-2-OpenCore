@@ -128,6 +128,9 @@ sudo pmset restoredefaults;
 sudo pmset -a hibernatemode 25;
 ```
 
+## Fixing broken iMessage
+To fix issues with iMessage (Apple Messages) related to the [Intel Wireless driver](https://github.com/OpenIntelWireless/itlwm), please disable the `AirportItlwm-Sonoma.kext` in your `config.plist` and use the [itlwm_v2.2.0_stable.kext.zip](https://github.com/OpenIntelWireless/itlwm/releases/download/v2.2.0/itlwm_v2.2.0_stable.kext.zip) and its companion app [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases/download/v1.4.1/HeliPort.dmg) instead.
+
 ## Related issues
 * https://github.com/VoodooI2C/VoodooI2CHID/pull/48
 * https://github.com/VoodooI2C/VoodooI2C/issues/455
