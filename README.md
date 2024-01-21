@@ -67,12 +67,13 @@ The `AirportItlwm.kext` from the [OpenIntelWireless repo](https://github.com/Ope
 - [x] Surface Pen (`SSDT-XOSI.aml`, `VoodooI2C.kext`, `VoodooI2CHID.kext`)
 - [x] MicroSD Card reader (`RealtekCardReader.kext`, `RealtekCardReaderFriend.kext`)
 - [x] Battery percentage and cycle count (`VirtualSMC.kext`, `SMCBatteryManager.kext`)
+- [x] Hibernation (hibernatemode 25) - the device successfully wakes up from hibernation mode
 - [x] USB Type-C to HDMI
 - [x] USB Type-C to USB3 & USB2
 - [x] USB Type-C Power Delivery
 
 ## What needs some more work
-- [ ] Sleep/wake - the device wakes up from sleep displaying the Surface logo on the internal display
+- [ ] Sleep (hibernatemode 3) - the device wakes up from sleep displaying the Surface logo on the internal display
 - [ ] Type Cover - the caps lock led does not light up when enabled: [issue fired](https://github.com/VoodooI2C/VoodooI2CHID/pull/52#issuecomment-841795827)
 - [ ] Accelerometers, gyroscope
 - [ ] Ambient light sensor
@@ -117,15 +118,15 @@ _**Please be aware that these hacks may potentially brick your computer! Proceed
 ## Enabling native HiDPI display settings in macOS
 On the installed macOS system, the default display resolution is too small for a small device such as the Surface Go 2. To enable the native HiDPI settings in the Display Preferences of macOS, download and run the [one-key-hidpi](https://github.com/jlempen/one-key-hidpi) script and select the option `(4) 1920x1280 Display`. This fork of [xzhih's one-key-hidpi tool](https://github.com/xzhih/one-key-hidpi) was modified to add the 1920x1280 resolution needed for the Surface Go 2.
 
-## Disabling sleep
-As there is still no solution to the sleep issue on the Surface Go 2, it is recommended to disable Sleep altogether for now:
+## Disabling Sleep and enabling Hibernate
+As there is still no solution to the sleep issue on the Surface Go 2, it is recommended to disable Sleep altogether and use Hibernate for now:
 ```
-sudo pmset -a sleep 0
-sudo pmset -a hibernatemode 0
-sudo pmset -a disablesleep 1
+sudo pmset -a sleep 1;
+sudo pmset -a hibernatemode 3;
+sudo pmset -a disablesleep 0;
+sudo pmset restoredefaults;
+sudo pmset -a hibernatemode 25;
 ```
-
-There have been reports that the Surface Go 2 is able to successfully enter and wake from Hibernation instead of Sleep [in this discussion](https://github.com/jlempen/Surface-Go-2-OpenCore/issues/1#issuecomment-1500697563), but I haven't been able to make it work yet. The [SSDT-GPRW.aml and the GPRW to XPRW patch](https://dortania.github.io/OpenCore-Post-Install/usb/misc/instant-wake.html) are enabled in this EFI folder for those who want to troubleshoot the sleep and/or hibernate issues.
 
 ## Related issues
 * https://github.com/VoodooI2C/VoodooI2CHID/pull/48
