@@ -15,8 +15,6 @@ For macOS to be able to boot on the Surface Go 2, the `Secure Boot` option needs
 
 Please be aware that all `PlatformInfo` and `SMBIOS` information was removed from the OpenCore `config.plist` files. Users will therefore need to generate their own `PlatformInfo` with [CorpNewt's GenSMBIOS tool](https://github.com/corpnewt/GenSMBIOS) before attempting to boot a Surface Go 2 with this repository's EFI folder.
 
-This repository features an EFI folder with two distinct `config.plist` files. One is meant to be used without the UEFI BIOS hacks below (`config_easy.plist`), the other one (`config_hard.plist`) will only boot after the UEFI hacks have been applied. Simply rename the config file you plan to use to `config.plist` and delete the other config file.
-
 The `kexts` required to enable the trackpad and the touchscreen are special versions of `VoodooI2C.kext` and `VoodooI2CHID.kext` [patched and improved by lazd](https://github.com/jlempen/Surface-Go-2-OpenCore/issues/1#issuecomment-1705597716). Updating those `kexts` with the official ones from [the VoodooI2C repo](https://github.com/VoodooI2C) will most certainly break trackpad and touchscreen functionality! They were renamed to `VoodooI2C-SurfaceTouch.kext` and `VoodooI2CHID-SurfaceTouch.kext` so as not to be auto-updated by tools such as [OCAT](https://github.com/ic005k/OCAuxiliaryTools).
 The `AirportItlwm.kext` from the [OpenIntelWireless repo](https://github.com/OpenIntelWireless/itlwm) is required to enable the Wifi chip and was renamed to `AirportItlwm-Sonoma.kext` for the same reason.
 
@@ -24,7 +22,7 @@ The `AirportItlwm.kext` from the [OpenIntelWireless repo](https://github.com/Ope
 | Software         | Version                            |
 | ---------------- | ---------------------------------- |
 | Target OS        | Apple macOS 14.2.1 Sonoma |
-| OpenCore         | [MOD-OC v0.9.7](https://github.com/wjz304/OpenCore_NO_ACPI_Build/releases/download/0.9.7_9802d1c/OpenCore-Mod-0.9.7-RELEASE.zip) |
+| OpenCore         | [MOD-OC v0.9.8](https://github.com/wjz304/OpenCore_NO_ACPI_Build/releases/download/0.9.8_d66a987/OpenCore-Mod-0.9.8-RELEASE.zip) |
 | SMBIOS           | MacBookAir8,1 |
 | SSD format       | APFS file system, GPT partition table |
 
@@ -100,30 +98,12 @@ The `VoltageShift.kext` is already included and enabled in this repository's `Ke
 
 Please refer to the instructions found in the [VoltageShift repository](https://github.com/sicreative/VoltageShift), as well as to the excellent howto found in [zearp's repository](https://github.com/zearp/Nucintosh#undervolting).
 
-## UEFI BIOS hacks
-The UEFI BIOS UI of the Surface Go 2 shows only a few trivial settings. In order to take advantage of better CPU power management and graphics acceleration, there are a few other settings that need to be changed in the UEFI BIOS. The best way to achieve this is to use the [RU.efi tool](http://ruexe.blogspot.com) or the new [setup_var.efi tool](https://github.com/datasone/setup_var.efi). The [Dortania OpenCore Post-Install guide](https://dortania.github.io/OpenCore-Post-Install/misc/msr-lock.html#turning-off-cfg-lock-manually) has detailed instructions on how to use the `RU.efi` tool.
-
-Hint: the `RU.efi` tool is included in this EFI folder and may be launched from the OpenCore picker in the Auxiliary tools section.
-
-_**Please be aware that these hacks may potentially brick your computer! Proceed carefully and only if you know what you are doing!**_
-
-### UEFI BIOS variables which need to be modified
-| VarName | VarOffset | VarStore | From | To |
-| ---------------- | -- | -- | --------- | --------- |
-| CFG Lock | 0x3C | 0x3 (CpuSetup) | 0x1 (Enabled) | 0x0 (Disabled) |
-| VT-d | 0xE3 | 0x2 (SaSetup) | 0x1 (Enabled) | 0x0 (Disabled) |
-| DVMT Pre-Allocated | 0xDF | 0x2 (SaSetup) | 0x1 (32M) | 0x2 (64M) |
-| DVMT Total Gfx Mem | 0xE0 | 0x2 (SaSetup) | 0x2 (256M) | 0x3 (MAX) |
-
 ## Enabling native HiDPI display settings in macOS
 On the installed macOS system, the default display resolution is too small for a small device such as the Surface Go 2. To enable the native HiDPI settings in the Display Preferences of macOS, download and run the [one-key-hidpi](https://github.com/jlempen/one-key-hidpi) script and select the option `(4) 1920x1280 Display`. This fork of [xzhih's one-key-hidpi tool](https://github.com/xzhih/one-key-hidpi) was modified to add the 1920x1280 resolution needed for the Surface Go 2.
 
 ## Disabling Sleep and enabling Hibernate
 As there is still no solution to the sleep issue on the Surface Go 2, it is recommended to disable Sleep altogether and use Hibernate for now:
 ```
-sudo pmset -a sleep 1;
-sudo pmset -a hibernatemode 3;
-sudo pmset -a disablesleep 0;
 sudo pmset restoredefaults;
 sudo pmset -a hibernatemode 25;
 ```
