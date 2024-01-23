@@ -59,7 +59,7 @@ The `AirportItlwm.kext` from the [OpenIntelWireless repo](https://github.com/Ope
 - [x] Bluetooth (`IntelBluetoothFirmware.kext`, `IntelBTPatcher.kext`, `BlueToolFixup.kext`)
 - [x] Internal speakers, microphone and Combojack (`AppleALC.kext`, `alcid=3`)
 - [x] Power, volume up and volume down buttons (`VoodooPS2.kext`)
-- [x] Surface Type Cover keyboard with working brightness, volume and mute keys (`VoodooPS2.kext`)
+- [x] Surface Type Cover keyboard with working brightness, volume and mute keys, working caps lock light (`VoodooPS2.kext`)
 - [x] Surface Type Cover trackpad with native multi-touch gestures (`SSDT-XOSI.aml`, `VoodooI2C`, `VoodooI2CHID`)
 - [x] Touchscreen (`SSDT-XOSI.aml`, `VoodooI2C.kext`, `VoodooI2CHID.kext`)
 - [x] Surface Pen (`SSDT-XOSI.aml`, `VoodooI2C.kext`, `VoodooI2CHID.kext`)
@@ -72,7 +72,6 @@ The `AirportItlwm.kext` from the [OpenIntelWireless repo](https://github.com/Ope
 
 ## What needs some more work
 - [ ] Sleep (hibernatemode 3) - the device wakes up from sleep displaying the Surface logo on the internal display
-- [ ] Type Cover - the caps lock led does not light up when enabled: [issue fired](https://github.com/VoodooI2C/VoodooI2CHID/pull/52#issuecomment-841795827)
 - [ ] Accelerometers, gyroscope
 - [ ] Ambient light sensor
 
