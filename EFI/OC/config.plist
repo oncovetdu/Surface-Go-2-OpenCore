@@ -1071,6 +1071,50 @@
 				<key>TextMode</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>Arguments</key>
+				<string></string>
+				<key>Auxiliary</key>
+				<true/>
+				<key>Comment</key>
+				<string>ControlMsrE2.efi</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Flavour</key>
+				<string>Auto</string>
+				<key>FullNvramAccess</key>
+				<false/>
+				<key>Name</key>
+				<string>ControlMsrE2.efi</string>
+				<key>Path</key>
+				<string>ControlMsrE2.efi</string>
+				<key>RealPath</key>
+				<false/>
+				<key>TextMode</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<string>0x3C 0x0 -n CpuSetup --write_on_demand</string>
+				<key>Auxiliary</key>
+				<true/>
+				<key>Comment</key>
+				<string>UEFI command-line tool for read/write access of variables - CFG Lock unlock</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Flavour</key>
+				<string>Auto</string>
+				<key>FullNvramAccess</key>
+				<true/>
+				<key>Name</key>
+				<string>setup_var - CFG Unlock</string>
+				<key>Path</key>
+				<string>setup_var.efi</string>
+				<key>RealPath</key>
+				<true/>
+				<key>TextMode</key>
+				<true/>
+			</dict>
 		</array>
 	</dict>
 	<key>NVRAM</key>
