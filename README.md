@@ -97,6 +97,20 @@ The `VoltageShift.kext` is already included and enabled in this repository's `Ke
 
 Please refer to the instructions found in the [VoltageShift repository](https://github.com/sicreative/VoltageShift), as well as to the excellent howto found in [zearp's repository](https://github.com/zearp/Nucintosh#undervolting).
 
+## Disabling CFG Lock
+
+1. Boot into OpenCore
+2. Press Space to see the list of tools
+3. Select `setup_var`
+4. Press enter
+5. Restart
+
+To verify this worked, press Space and select the `ControlMsrE2` -- if it was successful, you'll see:
+
+> This firmware has UNLOCKED MSR 0xE2 register!
+
+Finally, edit `config.plist` and set `Kernel -> Quirks -> AppleCpuPmCfgLock` and `Kernel -> Quirks -> AppleXcpmCfgLock` to false.
+
 ## Enabling native HiDPI display settings in macOS
 On the installed macOS system, the default display resolution is too small for a small device such as the Surface Go 2. To enable the native HiDPI settings in the Display Preferences of macOS, download and run the [one-key-hidpi](https://github.com/jlempen/one-key-hidpi) script and select the option `(4) 1920x1280 Display`. This fork of [xzhih's one-key-hidpi tool](https://github.com/xzhih/one-key-hidpi) was modified to add the 1920x1280 resolution needed for the Surface Go 2.
 
