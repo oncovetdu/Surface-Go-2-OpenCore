@@ -19,7 +19,8 @@ For macOS to be able to boot on the Surface Go 2, the `Secure Boot` option _**mu
 Please be aware that all `PlatformInfo` and `SMBIOS` information was removed from the OpenCore `config.plist` files. Users will therefore need to generate their own `PlatformInfo` with [CorpNewt's GenSMBIOS tool](https://github.com/corpnewt/GenSMBIOS) before attempting to boot a Surface Go 2 with this repository's EFI folder.
 
 The `kexts` required to enable the trackpad and the touchscreen are special versions of `VoodooI2C.kext` and `VoodooI2CHID.kext` [patched and improved by lazd](https://github.com/jlempen/Surface-Go-2-OpenCore/issues/1#issuecomment-1705597716). Updating those `kexts` with the official ones from [the VoodooI2C repo](https://github.com/VoodooI2C) will most certainly break trackpad and touchscreen functionality! They were renamed to `VoodooI2C-SurfaceTouch.kext` and `VoodooI2CHID-SurfaceTouch.kext` so as not to be auto-updated by tools such as [OCAT](https://github.com/ic005k/OCAuxiliaryTools).
-The `AirportItlwm.kext` from the [OpenIntelWireless repo](https://github.com/OpenIntelWireless/itlwm) is required to enable the Wifi chip and was renamed to `AirportItlwm-Sonoma.kext` for the same reason.
+
+`AirportItlwm-Ventura.kext`, `AirportItlwm-Sonoma140.kext` and `AirportItlwm-Sonoma144.kext` from the [OpenIntelWireless repo](https://github.com/OpenIntelWireless/itlwm) are required to enable the Wifi chip and were renamed for the same reason. This EFI will dynamically load the appropriate kext for macOS Ventura or Sonoma depending on the running kernel. No need to manually replace the kext file when updating your version of macOS.
 
 ## Software Specifications
 | Software         | Version                            |
