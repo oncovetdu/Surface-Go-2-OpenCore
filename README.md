@@ -100,11 +100,11 @@ Please refer to the instructions found in the [VoltageShift repository](https://
 ## Disabling CFG Lock to improve Power Management
 1. Boot into OpenCore
 2. Press Space to see the list of tools
-3. Select `setup_var`
+3. Select `Disable CFG Lock`
 4. Press enter
 5. Restart
 
-To verify this worked, press Space and select the `ControlMsrE2` -- if it was successful, you'll see:
+To verify this worked, press Space and select the `Check CFG Lock State` tool -- if it was successful, you'll see:
 
 > This firmware has UNLOCKED MSR 0xE2 register!
 
