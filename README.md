@@ -22,6 +22,9 @@ The `kexts` required to enable the trackpad and the touchscreen are special vers
 
 `AirportItlwm-Ventura.kext`, `AirportItlwm-Sonoma140.kext` and `AirportItlwm-Sonoma144.kext` from the [OpenIntelWireless repo](https://github.com/OpenIntelWireless/itlwm) are required to enable the Wifi chip and were renamed for the same reason. This EFI will dynamically load the appropriate kext for macOS Ventura or Sonoma depending on the running kernel. No need to manually replace the kext file when updating your version of macOS.
 
+<details>
+  <summary>Software Specifications</summary>
+  
 ## Software Specifications
 | Software         | Version                            |
 | ---------------- | ---------------------------------- |
@@ -29,7 +32,11 @@ The `kexts` required to enable the trackpad and the touchscreen are special vers
 | OpenCore         | [MOD-OC v1.0.1](https://github.com/wjz304/OpenCore_NO_ACPI_Build/releases/download/1.0.1_08932be/OpenCore-Mod-1.0.1-RELEASE.zip) |
 | SMBIOS           | MacBookAir8,1 |
 | SSD format       | APFS file system, GPT partition table |
+</details>
 
+<details>
+  <summary>Computer Specifications</summary>
+  
 ## Computer Specifications
 | Device           | Hardware                           |
 | ---------------- | ---------------------------------- |
@@ -52,7 +59,11 @@ The `kexts` required to enable the trackpad and the touchscreen are special vers
 | LTE (if available) | Surface Mobile Broadband, USB device, Qualcomm Snapdragon X16 LTE |
 | GPS (if available) | |
 | Accelerometers, gyroscopes, ambient light sensors | |
+</details>
 
+<details>
+  <summary>What works</summary>
+  
 ## What works
 - [x] CPU power management
 - [x] CPU SpeedStep
@@ -73,18 +84,30 @@ The `kexts` required to enable the trackpad and the touchscreen are special vers
 - [x] USB Type-C to HDMI
 - [x] USB Type-C to USB3 & USB2
 - [x] USB Type-C Power Delivery
+</details>
 
+<details>
+  <summary>What needs some more work</summary>
+  
 ## What needs some more work
 - [ ] Sleep (hibernatemode 3) - the device wakes up from sleep displaying the Surface logo on the internal display
 - [ ] Accelerometers, gyroscope
 - [ ] Ambient light sensor
+</details>
 
+<details>
+  <summary>What will probably never work</summary>
+  
 ## What will probably never work
 - [ ] Front & rear cameras
 - [ ] IR camera (Windows Hello)
 - [ ] NFC
 - [ ] LTE
+</details>
 
+<details>
+  <summary>UEFI Settings</summary>
+  
 ## UEFI Settings
 To enter the UEFI Settings, power on your Surface Go 2 and hold the `Volume Up Button` (the left volume button) on the tablet as soon as the Surface Logo is displayed on the screen.
 
@@ -106,14 +129,22 @@ Apart from the `Secure Boot` setting, which ***must be disabled to boot macOS***
 | Boot configuration | |
 | -------- | ----- |
 | USB Storage | Move the item to the top of the list |
+</details>
 
+<details>
+  <summary>Turning off BD PROCHOT</summary>
+  
 ## Turning off BD PROCHOT
 On this device, BD PROCHOT will activate at temperatures as low as 60°C ~ 70°C. When it kicks in, the CPU will throttle down to 0.4Ghz, making the device more or less unusable. That's why BD PROCHOT needs to be disabled in order to increase the performance of the machine.
 
 You may use [arter97's DisablePROCHOT UEFI extension](https://github.com/arter97/DisablePROCHOT) which is already included in the EFI/OC/Drivers folder to disable BD PROCHOT. However, if the CPU continues to be fully loaded with BD PROCHOT disabled, the temperature may increase up to 90°C. Beyond 90°C, the device will become unstable and either crash or power off. To avoid this, the temperature needs to be kept under control.
 
 The DisablePROCHOT.efi driver is included but disabled in both config.plist files, as enabling it leads to the CPU overheating and the computer shutting down during install. You may enable the driver once macOS is installed on the device.
+</details>
 
+<details>
+  <summary>Undervolting to reduce heat and improve performance</summary>
+  
 ## Undervolting to reduce heat and improve performance
 The `VoltageShift.kext` undervolting tool is already included and enabled in this repository's `Kexts` folder. To be able to launch the `voltageshift` command line tool from anywhere, copy [VoltageShift from the Tools folder](https://github.com/jlempen/Surface-Go-2-OpenCore/blob/main/Tools/VoltageShift-EFI.zip) to your `/usr/local/bin` folder by entering `sudo cp voltageshift /usr/local/bin/` in the macOS terminal after navigating to the folder where you downloaded and unzipped the `voltageshift` executable file.
 
@@ -123,7 +154,11 @@ Once you have found an undervolting configuration that works well on your device
 > sudo ./voltageshift buildlaunchd -120 -50 -80 0 0 0 1 28 18 0.002 60
 
 The above settings are quite conservative and seem to work well on pretty much every Surface Go 2.
+</details>
 
+<details>
+  <summary>Disabling CFG Lock to improve Power Management</summary>
+  
 ## Disabling CFG Lock to improve Power Management
 1. Boot into OpenCore
 2. Press Space to see the list of tools
@@ -136,7 +171,11 @@ To verify this worked, press Space and select the `Check CFG Lock State` tool --
 > This firmware has UNLOCKED MSR 0xE2 register!
 
 Finally, edit `config.plist` and set `Kernel -> Quirks -> AppleCpuPmCfgLock` and `Kernel -> Quirks -> AppleXcpmCfgLock` to `false` and reboot.
+</details>
 
+<details>
+  <summary>Increasing DVMT Gfx Memory to improve iGPU performance</summary>
+  
 ## Increasing DVMT Gfx Memory to improve iGPU performance
 1. Boot into OpenCore
 2. Press Space to see the list of tools
@@ -147,7 +186,11 @@ Finally, edit `config.plist` and set `Kernel -> Quirks -> AppleCpuPmCfgLock` and
 7. Restart
 
 Finally, edit `config.plist` and delete or comment out `framebuffer-fbmem`, `framebuffer-stolenmem` and `framebuffer-patch-enable` in `Device Properties -> Add -> PciRoot(0x0)/Pci(0x2,0x0)` and restart.
+</details>
 
+<details>
+  <summary>More information on the modified UEFI Firmware variables</summary>
+  
 ## More information on the modified UEFI Firmware variables 
 | VarName | VarOffset | VarStore | From | To |
 | ---------------- | -- | -- | --------- | --------- |
@@ -165,17 +208,29 @@ To revert all changes made to the UEFI Firmware variables to their default value
 Repeat for every UEFI variable you wish to revert to its default value.
 
 ***Please be aware that you need to revert any changes made to your `config.plist` file before reverting the UEFI variables to their default values, or macOS won't boot anymore!***
+</details>
 
+<details>
+  <summary>Enabling native HiDPI display settings in macOS</summary>
+  
 ## Enabling native HiDPI display settings in macOS
 On the installed macOS system, the default display resolution is too small for a small device such as the Surface Go 2. To enable the native HiDPI settings in the Display Preferences of macOS, download and run the [one-key-hidpi](https://github.com/jlempen/one-key-hidpi) script and select the option `(4) 1920x1280 Display`. This fork of [xzhih's one-key-hidpi tool](https://github.com/xzhih/one-key-hidpi) was modified to add the 1920x1280 resolution needed for the Surface Go 2.
+</details>
 
+<details>
+  <summary>Disabling Sleep and enabling Hibernate</summary>
+  
 ## Disabling Sleep and enabling Hibernate
 As we still haven't found a solution for the Sleep/Wake issues on the Surface Go 2, disable Sleep altogether and use Hibernate for now:
 ```
 sudo pmset restoredefaults
 sudo pmset -a hibernatemode 25
 ```
+</details>
 
+<details>
+  <summary>Rotating the display</summary>
+  
 ## Rotating the display
 ### Rotating the display with the Display Rotation Menu widget
 [Display Rotation Menu](https://www.magesw.com/displayrotation/) by Mage Software is a free app designed to quickly rotate the display between Landscape, Portrait, Landscape Flipped or Portrait Flipped right from a menu bar widget. There's also a handy keyboard shortcut to rotate the display back to Landscape: `CTRL-OPTION-COMMAND-0` (as in "zero").
@@ -200,7 +255,11 @@ Or you could use BetterTouchTool together with jakehilborn's [displayplacer comm
 [Download BetterTouchTool](https://folivora.ai/releases/BetterTouchTool.zip) by folivora.ai
 
 [Download displayplacer](https://github.com/jakehilborn/displayplacer/releases/tag/v1.4.0) by jakehilborn
+</details>
 
+<details>
+  <summary>Enabling the On-Screen Keyboard</summary>
+  
 ## Enabling the On-Screen Keyboard
 macOS has a very nice On-Screen Keyboard readily available in the Accessibility Settings. To enable it, navigate to `System Settings -> Accessibility -> Accessibility Keyboard -> Enable`. When you minimize the keyboard, it shrinks down to a small button that can be dragged to a convenient location in a corner of the screen. There are plenty of options to configure the keyboard to your liking.
 
@@ -209,10 +268,19 @@ Navigate to `System Settings -> Lock Screen -> Accessibility Options -> Accessib
 
 ### Showing/hiding the On-Screen Keyboard with touchscreen gestures
 The most convenient way to show/hide the On-Screen Keyboard when using the Surface Go 2 as a tablet is with a touchscreen gesture. Here's how to set this up: navigate to `System Settings -> Accessibility -> Shortcuts` and uncheck every option but `Accessibility Keyboard`. This enables the keyboard shortcut `OPTION-COMMAND-F5` to show/hide the On-Screen Keyboard. Now use [BetterTouchTool](https://folivora.ai/) to assign this keyboard shortcut to a Trackpad/Touchscreen gesture. 
+</details>
 
+<details>
+  <summary>Fixing broken Apple Messages and FaceTime</summary>
+  
 ## Fixing broken Apple Messages and FaceTime
 To fix issues with Apple Messages and FaceTime related to the [Intel Wireless driver](https://github.com/OpenIntelWireless/itlwm) on macOS Sonoma, disable all `AirportItlwm-***.kext` entries under `Kernel -> Add` in your `config.plist` file and use the [itlwm_v2.3.0_stable.kext.zip](https://github.com/OpenIntelWireless/itlwm/releases/download/v2.3.0/itlwm_v2.3.0_stable.kext.zip) and its companion app [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases/download/v1.4.1/HeliPort.dmg) instead.
 The latest version 2.3.0 of itlwm.kext is already included in the Kext folder and `config.plist` file.
+</details>
 
+<details>
+  <summary>Related repositories</summary>
+  
 ## Related repositories
 * https://github.com/kingo132/surface-go2-hackintosh
+</details>
