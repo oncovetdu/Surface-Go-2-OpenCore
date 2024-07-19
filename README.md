@@ -4,7 +4,7 @@
 macOS on the Core m3-8100Y Microsoft Surface Go 2 thanks to [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg).
 
 ## Abstract
-Apart from the front and rear cameras, the IR camera (Windows Hello) and the LTE modem, everything is working perfectly like on a real MacBook Air/Pro. The battery runtime is around four to five hours.
+Apart from the front and rear cameras, the IR camera (Windows Hello) and the LTE modem, everything on the Core m3-8100Y version of the Surface Go 2 is working perfectly like on a real Mac. The Surface Go 2 works great as a handy little macOS tablet. It won't entirely replace an iPad or even an Android tablet, but once set up properly, macOS is actually quite a nice tablet OS and almost on par with the Windows tablet experience. The battery runtime is around five hours.
 
 ## Disclaimer
 This repository is neither a howto nor an installation manual. Using these files requires at least basic knowledge of [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg), ACPI, UEFI and the art of hackintoshing in general. I recommend reading the excellent [Dortania's OpenCore Install Guide](https://dortania.github.io/OpenCore-Install-Guide), as well as all its linked resources. For those who wish to improve their hackintoshing knowledge, [5T33Z0's OC-Little-Translated](https://github.com/5T33Z0/OC-Little-Translated) repository is the most comprehensive resource I've found on the subject.
@@ -21,6 +21,8 @@ Please be aware that all `PlatformInfo` and `SMBIOS` information was removed fro
 The `kexts` required to enable the trackpad and the touchscreen are special versions of `VoodooI2C.kext` and `VoodooI2CHID.kext` [patched and improved by lazd](https://github.com/jlempen/Surface-Go-2-OpenCore/issues/1#issuecomment-1705597716). Updating those `kexts` with the official ones from [the VoodooI2C repo](https://github.com/VoodooI2C) will most certainly break trackpad and touchscreen functionality! They were renamed to `VoodooI2C-SurfaceTouch.kext` and `VoodooI2CHID-SurfaceTouch.kext` so as not to be auto-updated by tools such as [OCAT](https://github.com/ic005k/OCAuxiliaryTools).
 
 `AirportItlwm-Ventura.kext`, `AirportItlwm-Sonoma140.kext` and `AirportItlwm-Sonoma144.kext` from the [OpenIntelWireless repo](https://github.com/OpenIntelWireless/itlwm) are required to enable the Wifi chip and were renamed for the same reason. This EFI will dynamically load the appropriate kext for macOS Ventura or Sonoma depending on the running kernel. No need to manually replace the kext file when updating your version of macOS.
+
+Windows and Linux should be detected automagically by the OpenCore boot loader even when installed after macOS.
 
 <details>
   <summary>Software Specifications</summary>
@@ -112,6 +114,8 @@ The `kexts` required to enable the trackpad and the touchscreen are special vers
 To enter the UEFI Settings, power on your Surface Go 2 and hold the `Volume Up Button` (the left volume button) on the tablet as soon as the Surface Logo is displayed on the screen.
 
 Apart from the `Secure Boot` setting, which ***must be disabled to boot macOS***, the following settings are not mandatory for macOS to work, but keep in mind that every disabled device saves power and increases the battery runtime. As the front, rear and IR cameras, as well as the LTE modem won't work in macOS, disabling them is recommended unless you use another operating system on the device. I also recommend moving `USB Storage` to the top of the boot configuration list, which makes booting from an USB stick much easier.
+
+Disabling the Trusted Platform Module (TPM) speeds up the boot time considerably, as the Surface logo with the red padlock only shows for a second.
 
 | Security | |
 | -------- | ----- |
