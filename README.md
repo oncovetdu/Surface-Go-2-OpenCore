@@ -85,6 +85,28 @@ The `kexts` required to enable the trackpad and the touchscreen are special vers
 - [ ] NFC
 - [ ] LTE
 
+## UEFI Settings
+To enter the UEFI Settings, power on your Surface Go 2 and hold the `Volume Up Button` (the left volume button) on the tablet as soon as the Surface Logo is displayed on the screen.
+
+Apart from the `Secure Boot` setting, which ***must be disabled to boot macOS***, the following settings are not mandatory for macOS to work, but keep in mind that every disabled device saves power and increases the battery runtime. As the front, rear and IR cameras, as well as the LTE modem won't work in macOS, disabling them is recommended unless you use another operating system on the device. I also recommend moving `USB Storage` to the top of the boot configuration list, which makes booting from an USB stick much easier.
+
+| Security | |
+| -------- | ----- |
+| Secure Boot | Disabled |
+| Trusted Platform Module (TPM) | Disabled |
+| Simultaneous Multithreading | Enabled |
+
+| Devices | |
+| -------- | ----- |
+| Front Camera | Disabled |
+| Rear Camera | Disabled |
+| IR Camera|- Disabled |
+| LTE | Disabled |
+
+| Boot configuration | |
+| -------- | ----- |
+| USB Storage | Move the item to the top of the list |
+
 ## Turning off BD PROCHOT
 On this device, BD PROCHOT will activate at temperatures as low as 60°C ~ 70°C. When it kicks in, the CPU will throttle down to 0.4Ghz, making the device more or less unusable. That's why BD PROCHOT needs to be disabled in order to increase the performance of the machine.
 
