@@ -24,6 +24,8 @@ The `kexts` required to enable the trackpad and the touchscreen are special vers
 
 Windows and Linux should be detected automagically by the OpenCore boot loader even when installed after macOS.
 
+This repository uses the unofficial OpenCore_NO_ACPI_Build fork of OpenCore by [btwise](https://gitee.com/btwise/OpenCore_NO_ACPI), wich is not endorsed by Acidanthera (the dev team behind OpenCore). The main (and only) difference between this fork and the official OpenCore version is that it allows to prevent ACPI injection (e.g. patches, tables, boot parameters) into other OSes besides macOS.
+
 <details>
   <summary>Software Specifications</summary>
   
