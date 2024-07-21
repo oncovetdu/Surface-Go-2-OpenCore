@@ -6,7 +6,7 @@ macOS on the Core m3-8100Y Microsoft Surface Go 2 thanks to [Acidanthera's OpenC
 ## Abstract
 Apart from the front and rear cameras, the IR camera (Windows Hello) the LTE modem, everything on the Core m3-8100Y version of the Surface Go 2 is working perfectly like on a real Mac. ACPI S3 Sleep is broken, but ACPI S4 Hibernate works great, though, and resuming from Hibernation takes around ten seconds. The advantage Hibernate has over Sleep is that the device doesn't consume any power while in a hibernated state.
 
-The Surface Go 2 works great as a handy little macOS tablet. It won't entirely replace an iPad or even an Android tablet, but once set up properly, macOS is actually quite a nice tablet OS and almost on par with the Windows tablet experience. All the fancy Trackpad gestures available on macOS work on the Touchscreen as well and are very smooth and reliable. Folding back the Type Cover disables the Keyboard and Trackpad and folding the Type Cover back to the laptop position enables both of them again.
+The Surface Go 2 works great as a handy little macOS tablet. It won't entirely replace an iPad or even an Android tablet, but once set up properly, macOS is actually quite a nice tablet OS and almost on par with the Windows tablet experience. All the fancy Trackpad gestures available on macOS work on the Touchscreen as well and are very smooth and reliable. Folding the Type Cover behind the tablet disables the Keyboard and Trackpad and folding the Type Cover to the laptop position again re-enables both of them.
 
 The battery runtime is around five hours.
 
