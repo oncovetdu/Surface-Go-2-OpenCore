@@ -138,6 +138,28 @@ Disabling the Trusted Platform Module (TPM) speeds up the boot time considerably
 </details>
 
 <details>
+  <summary>Disabling Sleep and enabling Hibernate</summary>
+  
+## Disabling Sleep and enabling Hibernate
+As we still haven't found a solution for the Sleep/Wake issues on the Surface Go 2, disable Sleep altogether and use Hibernate for now. Open the `Terminal` and enter the following commands, then reboot for the changes to take effect:
+```
+sudo pmset restoredefaults
+sudo pmset -a hibernatemode 25
+```
+If for whatever reason Hibernate is not working on your system, you should reset the `Power Management` settings and rebuild the `sleepimage` file. To do so, open the `Terminal` and enter the following commands, then reboot for the changes to take effect:
+```
+sudo rm /Library/Preferences/com.apple.PowerManagement*
+sudo rm /var/vm/sleepimage
+sudo pmset hibernatefile /var/vm/sleepimage
+```
+Once you are back in macOS, disable Sleep and enable Hibernate again, then reboot:
+```
+sudo pmset restoredefaults
+sudo pmset -a hibernatemode 25
+```
+</details>
+
+<details>
   <summary>Turning off BD PROCHOT</summary>
   
 ## Turning off BD PROCHOT
@@ -221,17 +243,6 @@ Repeat for every UEFI variable you wish to revert to its default value.
   
 ## Enabling native HiDPI display settings in macOS
 On the installed macOS system, the default display resolution is too small for a small device such as the Surface Go 2. To enable the native HiDPI settings in the Display Preferences of macOS, download and run the [one-key-hidpi](https://github.com/jlempen/one-key-hidpi) script and select the option `(4) 1920x1280 Display`. This fork of [xzhih's one-key-hidpi tool](https://github.com/xzhih/one-key-hidpi) was modified to add the 1920x1280 resolution needed for the Surface Go 2.
-</details>
-
-<details>
-  <summary>Disabling Sleep and enabling Hibernate</summary>
-  
-## Disabling Sleep and enabling Hibernate
-As we still haven't found a solution for the Sleep/Wake issues on the Surface Go 2, disable Sleep altogether and use Hibernate for now:
-```
-sudo pmset restoredefaults
-sudo pmset -a hibernatemode 25
-```
 </details>
 
 <details>
